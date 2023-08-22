@@ -15,9 +15,9 @@ const RenderProducts = ({ data, title }) => {
 };
 
 const Home = () => {
-// Updates the state of the products and the products that match the search text
+	// Updates the state of the products and the products that match the search text
 	const [products, setProducts] = useState(null);
-	const [searchText, setsearchText] = useState('Pineapples');
+	const [searchText, setsearchText] = useState('');
 
 	return (
 		<section className='max-w-7xl mx-auto'>
@@ -28,20 +28,41 @@ const Home = () => {
 				</p>
 			</div>
 
-			<div className='mt-16'>
-                {/* Allows the user to search */}
-				<SearchField />
-			</div>
+			<form
+				className='mt-16 max-w-3xl'
+				// onSubmit={handleSubmit}
+			>
+				<div className='flex flex-col gap-5'>
+					{/* Allows the user to search */}
+					<SearchField
+						labelName='Search'
+						type='text'
+						name='product'
+						placeholder='Search for a product'
+						// value={form.name}
+						// handleChange={handleChange}
+					/>
+				</div>
+				<div>
+					<button
+						type='button'
+						// onClick
+						className='text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+					>
+						Search
+					</button>
+				</div>
+			</form>
 
 			<div className='mt-10'>
-                {/* if there are products, display the Card component */}
+				{/* if there are products, display the Card component */}
 				{products ? (
 					<div className='flex justify-center items-center'>
 						<Card />
 					</div>
 				) : (
 					<>
-                    {/* Or if the user searched, display those products */}
+						{/* Or if the user searched, display those products */}
 						{searchText && (
 							<h2 className='font-medium text-[#666e75] text-xl mb-3'>
 								Showing products for
@@ -49,7 +70,7 @@ const Home = () => {
 							</h2>
 						)}
 						<div className='grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3'>
-                            {/* if the user searched, display those products or display all products */}
+							{/* if the user searched, display those products or display all products */}
 							{searchText ? (
 								<RenderProducts data={[]} title='No products found' />
 							) : (
