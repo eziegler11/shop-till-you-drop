@@ -41,10 +41,17 @@ const Home = () => {
                         </h2>
                     )}
                     <div className='grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3'>
+                        {searchText ? (
                             <RenderProducts
                                 data={[]}
                                 title='No products found'
                                 />
+                                ) : (
+                                <RenderProducts 
+                                    data={[]}
+                                    title='All products'
+                                />
+                                )}
                     </div>
                 </>
             )}
