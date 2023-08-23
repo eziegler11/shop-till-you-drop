@@ -1,9 +1,12 @@
 import mongoose from "mongoose";
-import ProductSchema from "./models/product.js";
-import connectDB from './mongodb/connect.js';
+import ProductSchema from "../models/product.js";
+import connectDB from '../connect.js';
 import * as dotenv from 'dotenv';
+import express from 'express';
 
 dotenv.config();
+const app = express();
+app.use(express.json());
 
 const startServer = async () => {
 	try {
@@ -16,10 +19,47 @@ const startServer = async () => {
 	}
 };
 
+startServer();
+
 const seedProducts = [
     {
         name: 'Airpods Wireless Bluetooth Headphones',
         price: 149.99,
-        image:
-    }
-]
+        category: 'Wireless Headphones'
+    },
+    {
+        name: 'iPhone 11 Pro 256GB Memory',
+        price: 599.99,
+        category: 'Phone'
+    },
+    {
+        name: 'Cannon EOS 80D DSLR Camera',
+        price: 929.99,
+        category: 'Camera'
+    },
+    {
+        name: 'Sony Playstation 4 Pro White Version',
+        price: 399.99,
+        category: 'Gaming Console'
+    },
+    {
+        name: 'Bose SoundLink Bluetooth Speaker',
+        price: 199.99,
+        category: 'Speakers'
+    },
+    {
+        name: 'Logitech G-Series Gaming Mouse',
+        price: 49.99,
+        category: 'Gaming Mouse'
+    },
+];
+
+const seedDB = async () => {
+    await ProductSchema.deleteMany({});
+    await ProductSchema.insertMany(seedProducts);
+    console.log('DB Seeded');
+};
+
+seedDB().then(() => {
+    mongoose.connection.close();
+})
