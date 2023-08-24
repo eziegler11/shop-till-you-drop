@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Card, SearchField } from '../components';
 
@@ -18,6 +18,29 @@ const Home = () => {
 	// Updates the state of the products and the products that match the search text
 	const [products, setProducts] = useState(null);
 	const [searchText, setsearchText] = useState('');
+
+	useEffect(() => {
+		const fetchProducts = async () => {
+			try {
+				const response = await fetch('http://localhost:8080/api/v1', {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				});
+
+				if(response.ok) {
+					const result = await response.json();
+
+					setProducts(result.data);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		}
+
+		fetchProducts();
+	}, []);
 
 	return (
 		<section className='max-w-7xl mx-auto'>
@@ -74,7 +97,7 @@ const Home = () => {
 							{searchText ? (
 								<RenderProducts data={[]} title='No products found' />
 							) : (
-								<RenderProducts data={[]} title='All products' />
+								<RenderProducts data={products} title='All products' />
 							)}
 						</div>
 					</>

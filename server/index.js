@@ -27,3 +27,17 @@ const startServer = async () => {
 };
 
 startServer();
+
+// Need to download images for the products and save in a folder
+// Need to connect routes from server to client
+// Allows the cards to be created for each product
+// Then in the cards, associate the images with the products
+
+// Need to create a get route on the "search" button
+// Allows the user to search for a product using req.params.body
+// Then the search will be sent to the server
+// Server will return and the client will display the results
+
+// Need to make a cart page
+// Update cart to show a number next to the icon
+// Server saves client data to know which products the user added to the cart, in order to return these on the cart page
