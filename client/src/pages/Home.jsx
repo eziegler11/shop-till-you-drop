@@ -2,31 +2,28 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import { SearchField } from '../components';
-
-// Displays products, if there are any
-// Maps through each product and passes the product data to the Card
-// Otherwise, returns the title
-// const RenderProducts = ({ data, name }) => {
-// 	if (data?.length > 0) {
-// 		return data.map((product) => <Card key={product._id} {...product} />);
-// 	}
-
-// 	return (
-// 		<h2 className='mt-5 font-bold text-[#6469ff] text-xl uppercase'>{name}</h2>
-// 	);
-// };
+import Card from '../components/Card';
 
 const Home = () => {
 	// Updates the state of the products and the products that match the search text
-	const [products, setProducts] = useState([]);
+	const [products, getProducts] = useState('');
 	const [searchText, setsearchText] = useState('');
 
+	const url = 'http://localhost:3001/';
+
 	useEffect(() => {
-		axios
-			.get('http://localhost:3001/getProducts')
-			.then((products) => setProducts(products.data))
-			.catch((error) => console.log(error));
+		getAllProducts();
 	}, []);
+
+	const getAllProducts = () => {
+		axios
+			.get(`${url}getProducts`)
+			.then((response) => {
+				const allProducts = response.data;
+				getProducts(allProducts);
+			})
+			.catch((error) => console.log(`Error: ${error}`));
+	};
 
 	return (
 		<section className='max-w-7xl mx-auto'>
@@ -66,9 +63,7 @@ const Home = () => {
 			<div className='mt-10'>
 				{/* if there are products, display the Card component */}
 				<div className='flex justify-center items-center'>
-					{products.map((products) => {
-						<p>{products.name}</p>;
-					})}
+					<Card products={products} />
 				</div>
 			</div>
 		</section>
