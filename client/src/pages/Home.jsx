@@ -61,7 +61,6 @@ const Home = () => {
 			</form>
 
 			<div className='mt-10'>
-				{/* if there are products, display the Card component */}
 				<div className='flex justify-center items-center'>
 					<Card products={products} />
 				</div>
@@ -70,3 +69,18 @@ const Home = () => {
 	);
 };
 export default Home;
+
+// Need to add images to the product cards
+// Need to style product cards
+
+// Need to create a query to search for products
+// Need to create handleSubmit function on the search button
+
+// Need a button to add products to the cart
+// Need a handleSubmit function on the add to cart button
+// Need to add a number next to the cart
+
+// Need to associate a user with their own individual cart / local storage? cookies?
+
+// Need to create a cart page
+// Need to create a checkout page with Stripe
