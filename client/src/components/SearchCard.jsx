@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Card = ({ products }) => {
-
+const SearchCard = ({ products }) => {
 	if (products.length > 0) {
 		return products.map((product) => {
 			return (
@@ -15,4 +14,4 @@ const Card = ({ products }) => {
 	}
 };
 
-export default Card;
+export default SearchCard;
