@@ -84,3 +84,4 @@ export default Home;
 
 // Need to create a cart page
 // Need to create a checkout page with Stripe
+// Will work on this tomorrow
