@@ -9,7 +9,7 @@ app.use(express.json());
 
 mongoose.connect('mongodb://localhost:27017/test');
 
-// Gets all products on load and displays them on the home page
+// Gets all products on load and displays them on the home
 app.get('/products', (req, res) => {
 	ProductModel.find()
 		.then((products) => res.json(products))

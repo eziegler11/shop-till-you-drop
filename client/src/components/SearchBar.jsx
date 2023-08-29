@@ -14,6 +14,7 @@ const SearchBar = ({ onSearch }) => {
 				value={searchText}
 				onChange={(e) => setSearchText(e.target.value)}
 				placeholder='Search products...'
+				onSubmit={handleSearch}
 			/>
 			<button
 				onClick={handleSearch}

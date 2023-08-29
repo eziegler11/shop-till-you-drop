@@ -8,6 +8,7 @@ const Home = () => {
 	// Updates the state of the products and the products that match the search text
 	const [products, getProducts] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
+	const [cart, setCart] = useState({});
 
 	const url = 'http://localhost:3001/';
 
@@ -51,7 +52,7 @@ const Home = () => {
 			</div>
 
 			<div className='mt-10'>
-				<div className='grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3'>
+				<div className='flex gap-10'>
 					{searchResults.length > 0 ? (
 						<Card products={searchResults} title='No Search Results Found' />
 					) : (
