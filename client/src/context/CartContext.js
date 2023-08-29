@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+import { getAllProducts } from '../pages/Home';
 
 // Context (cart, addToCart, removeCart)
 // Provider gives your React app access to all the things in your context
@@ -43,19 +44,29 @@ export function CartProvider({ children }) {
 				cartProducts.map(
 					(product) =>
 						product._id === _id // if condition
-							? {
-									...product,
-									quantity: product.quantity + 1, // if statement is true
-							  }
+							? { ...product, quantity: product.quantity + 1 } // if statement is true
 							: product // if statement is false
 				)
 			);
 		}
 	}
 
-    function removeOneFromCart(_id) {
-        const quantity = getProductQuantity()
-    }
+	function removeOneFromCart(_id) {
+		const quantity = getProductQuantity(_id);
+
+		if (quantity == 1) {
+			deleteFromCart(_id);
+		} else {
+			setCartProducts(
+				cartProducts.map(
+					(product) =>
+						product._id === _id // if condition
+							? { ...product, quantity: product.quantity - 1 } // if statement is true
+							: product // if statement is false
+				)
+			);
+		}
+	}
 
 	function deleteFromCart(_id) {
 		// [] if an object meets a condition, add the object to array
@@ -65,6 +76,16 @@ export function CartProvider({ children }) {
 			})
 		);
 	}
+
+    
+    function getTotalCost() {
+        let totalCost = 0;
+        cartProducts.map((cartItem) => {
+            const getProductData = getAllProducts(cartItem._id);
+            totalCost += (getProductData.price * cartItem.quantity)
+        });
+        return totalCost;
+    }
 
 	const contextValue = {
 		items: [cartProducts],
