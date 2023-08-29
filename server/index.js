@@ -9,12 +9,14 @@ app.use(express.json());
 
 mongoose.connect('mongodb://localhost:27017/test');
 
+// Gets all products on load and displays them on the home page
 app.get('/products', (req, res) => {
 	ProductModel.find()
 		.then((products) => res.json(products))
 		.catch((error) => res.json(error));
 });
 
+// Allows the User to Search for specific products
 app.get('/search/products', async (req, res) => {
   try {
 		const searchText = req.query.q || '';

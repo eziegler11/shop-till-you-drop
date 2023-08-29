@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Card = ({ products }) => {
-
 	if (products.length > 0) {
 		return products.map((product) => {
 			return (
