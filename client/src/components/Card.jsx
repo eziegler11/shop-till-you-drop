@@ -4,9 +4,10 @@ import { CartContext } from '../context/CartContext';
 import { useContext } from 'react';
 
 const Card = ({ products }) => {
-	const quantity = 1;
+	const quantity = 0;
 	const cart = useContext(CartContext);
 	const productQuantity = cart.getProductQuantity(products._id);
+	console.log(cart.items);
 
 	if (products.length > 0) {
 		return products.map((product) => {
@@ -29,7 +30,7 @@ const Card = ({ products }) => {
 					</div>
 					<div className='mt-auto'>
 						{quantity === 0 ? (
-							<button className='text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'>
+							<button className='text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center' onClick={() => cart.addOneToCart(product._id)}>
 								Add to Cart
 							</button>
 						) : (
