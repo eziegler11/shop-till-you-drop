@@ -2,11 +2,13 @@ import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
 
 import { Home } from './pages';
 import { Cart } from './pages';
+import CartProvider from './context/CartContext';
 
 import { RiShoppingCartLine } from 'react-icons/ri';
 
 const App = () => {
 	return (
+		<CartProvider>
 			<BrowserRouter>
 				<header className='w-full flex justify-between items-center bg-white sm:px-8 px-4 py-4 border-b border-b-[#e6ebf4]'>
 					<Link to='/'>
@@ -30,6 +32,7 @@ const App = () => {
 					</Routes>
 				</main>
 			</BrowserRouter>
+		</CartProvider>
 	);
 };
 

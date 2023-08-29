@@ -22,8 +22,7 @@ const Home = () => {
 		await axios
 			.get(`${url}products`)
 			.then((response) => {
-				const allProducts = response.data;
-				getProducts(allProducts);
+				getProducts(response.data);
 			})
 			.catch((error) => console.log(`Error: ${error}`));
 	};

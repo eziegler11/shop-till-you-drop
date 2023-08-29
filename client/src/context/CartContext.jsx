@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { getAllProducts } from '../pages/Home';
+import axios from 'axios';
 
 // Context (cart, addToCart, removeCart)
 // Provider gives your React app access to all the things in your context
@@ -18,7 +18,7 @@ export function CartProvider({ children }) {
 	// { id: 1, quantity: 1 }
 
 	function getProductQuantity(_id) {
-		cartProducts.find((product) => product._id === _id)?.quantity;
+		const quantity = cartProducts.find((product) => product._id === _id)?.quantity;
 
 		if (quantity === undefined) {
 			return 0;
@@ -77,15 +77,24 @@ export function CartProvider({ children }) {
 		);
 	}
 
-    
-    function getTotalCost() {
-        let totalCost = 0;
-        cartProducts.map((cartItem) => {
-            const getProductData = getAllProducts(cartItem._id);
-            totalCost += (getProductData.price * cartItem.quantity)
-        });
-        return totalCost;
-    }
+	const getAllProducts = async () => {
+		await axios
+			.get('http://localhost:3001/products')
+			.then((response) => {
+				response.data;
+			})
+			.catch((error) => console.log(`Error: ${error}`));
+	};
+
+	function getTotalCost() {
+		let totalCost = 0;
+		cartProducts.map((cartItem) => {
+			const getProductData = getAllProducts(cartItem._id);
+			totalCost += getProductData.price * cartItem.quantity;
+		});
+		return totalCost;
+	}
+
 
 	const contextValue = {
 		items: [cartProducts],
@@ -100,3 +109,5 @@ export function CartProvider({ children }) {
 		<CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
 	);
 }
+
+export default CartProvider;
