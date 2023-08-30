@@ -3,11 +3,10 @@ import { CartContext } from '../context/CartContext';
 import { formatCurrency } from '../utilities/formatCurrency';
 
 const productCard = (props) => {
-	//props.product is our prodcut data
+	//props.product is our product data
 	const product = props.product;
 	const cart = useContext(CartContext);
 	const productQuantity = cart.getProductQuantity(product._id);
-	console.log(cart.items);
 
 	return (
 		<div>
@@ -35,7 +34,9 @@ const productCard = (props) => {
 									+
 								</button>
 							</div>
-							<button className='text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'>
+							<button 
+                            onClick={() => cart.deleteFromCart(product._id)}
+                            className='text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'>
 								Remove
 							</button>
 						</div>

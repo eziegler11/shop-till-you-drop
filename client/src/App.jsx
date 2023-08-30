@@ -1,12 +1,19 @@
-import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
-import { Home } from './pages';
-import { Cart } from './pages';
-import CartProvider from './context/CartContext';
+import { useContext } from 'react';
+import { CartContext, CartProvider } from './context/CartContext';
+import { Cart, Home } from './pages';
 
 import { RiShoppingCartLine } from 'react-icons/ri';
 
 const App = () => {
+	// const cart = useContext(CartContext);
+
+	// const productsCount = cart.items.reduce(
+	// 	(sum, product) => sum + product.quantity,
+	// 	0
+	// );
+
 	return (
 		<CartProvider>
 			<BrowserRouter>
@@ -22,7 +29,6 @@ const App = () => {
 						className='bg-[#6469ff] text-white px-4 py-2 rounded-md relative'
 					>
 						<RiShoppingCartLine />
-						<div>3</div>
 					</Link>
 				</header>
 				<main className='sm:p-8 px-4 py-8 w-full bg-[#f9fafe] min-h-[calc(100vh-73px)]'>

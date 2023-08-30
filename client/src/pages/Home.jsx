@@ -69,7 +69,7 @@ const Home = () => {
 };
 export default Home;
 
-{
+
 	/* <div className='mt-10'>
 	<div className='flex gap-10'>
 		{searchResults.length > 0 ? (
@@ -79,7 +79,7 @@ export default Home;
 		)}
 	</div>
 </div> */
-}
+
 
 // Need to add images to the product cards
 // Need to style product cards
