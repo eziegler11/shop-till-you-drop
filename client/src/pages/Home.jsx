@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-import Card from '../components/Card';
 import SearchBar from '../components/SearchBar';
+import ProductCard from '../components/productCard';
+// import Card from '../components/Card';
 
 const Home = () => {
 	// Updates the state of the products and the products that match the search text
-	const [products, getProducts] = useState('');
+	const [products, getProducts] = useState([]);
 	const [searchResults, setSearchResults] = useState([]);
 	const [cart, setCart] = useState({});
 
@@ -52,17 +53,28 @@ const Home = () => {
 
 			<div className='mt-10'>
 				<div className='flex gap-10'>
-					{searchResults.length > 0 ? (
-						<Card products={searchResults} title='No Search Results Found' />
-					) : (
-						<Card products={products} title='No products' />
-					)}
+					{products.map((product, index) => (
+							<div key={index}>
+								<ProductCard product={product} />
+							</div>
+					))}
 				</div>
 			</div>
+
 		</section>
 	);
 };
 export default Home;
+
+// {<div className='mt-10'>
+// 	<div className='flex gap-10'>
+// 		{searchResults.length > 0 ? (
+// 			<Card products={searchResults} title='No Search Results Found' />
+// 		) : (
+// 			<Card products={products} title='No products' />
+// 		)}
+// 	</div>
+// </div>}
 
 // Need to add images to the product cards
 // Need to style product cards

@@ -1,5 +1,5 @@
-import { createContext, useState } from 'react';
 import axios from 'axios';
+import { createContext, useState } from 'react';
 
 // Context (cart, addToCart, removeCart)
 // Provider gives your React app access to all the things in your context
@@ -18,7 +18,9 @@ export function CartProvider({ children }) {
 	// { id: 1, quantity: 1 }
 
 	function getProductQuantity(_id) {
-		const quantity = cartProducts.find((product) => product._id === _id)?.quantity;
+		const quantity = cartProducts.find(
+			(product) => product._id === _id
+		)?.quantity;
 
 		if (quantity === undefined) {
 			return 0;
@@ -94,7 +96,6 @@ export function CartProvider({ children }) {
 		});
 		return totalCost;
 	}
-
 
 	const contextValue = {
 		items: [cartProducts],
