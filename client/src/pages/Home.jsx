@@ -53,28 +53,33 @@ const Home = () => {
 
 			<div className='mt-10'>
 				<div className='flex gap-10'>
-					{products.map((product, index) => (
+					{searchResults.length > 0 ? (
+						<ProductCard product={searchResults} />
+					) : (
+						products.map((product, index) => (
 							<div key={index}>
 								<ProductCard product={product} />
 							</div>
-					))}
+						))
+					)}
 				</div>
 			</div>
-
 		</section>
 	);
 };
 export default Home;
 
-// {<div className='mt-10'>
-// 	<div className='flex gap-10'>
-// 		{searchResults.length > 0 ? (
-// 			<Card products={searchResults} title='No Search Results Found' />
-// 		) : (
-// 			<Card products={products} title='No products' />
-// 		)}
-// 	</div>
-// </div>}
+{
+	/* <div className='mt-10'>
+	<div className='flex gap-10'>
+		{searchResults.length > 0 ? (
+			<Card products={searchResults} title='No Search Results Found' />
+		) : (
+			<Card products={products} title='No products' />
+		)}
+	</div>
+</div> */
+}
 
 // Need to add images to the product cards
 // Need to style product cards
