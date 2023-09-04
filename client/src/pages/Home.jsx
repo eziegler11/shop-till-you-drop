@@ -8,9 +8,6 @@ const Home = () => {
 	// Updates the state of the products and the products that match the search text
 	const [products, setProducts] = useState([]);
 	const [searchResults, setSearchResults] = useState([]);
-	const [cart, setCart] = useState({});
-
-	// const url = 'http://localhost:3001/';
 
 	// Displays all products on home page on render
 	useEffect(() => {
@@ -24,15 +21,16 @@ const Home = () => {
 			});
 	}, []);
 
-	// // Gets all products from the database
-	// const getAllProducts = async () => {
-	// 	await axios
-	// 		.get(`${url}products`)
-	// 		.then((response) => {
-	// 			getProducts(response.data);
-	// 		})
-	// 		.catch((error) => console.log(`Error: ${error}`));
-	// };
+	// useEffect(() => {
+	// 	axios
+	// 	.get('http://localhost:3001/search')
+	// 	.then((response) => {
+	// 		setSearchResults(response.data);
+	// 	})
+	// 	.catch((error) => {
+	// 		console.error(error);
+	// 	});
+	// }, []);
 
 	// Queries the database for products that match the search text
 	// const handleSearch = async (searchText) => {
@@ -54,7 +52,7 @@ const Home = () => {
 			</div>
 
 			<div className='mt-16'>
-				{/* <SearchBar onSearch={handleSearch} /> */}
+				<SearchBar onSearch={setSearchResults} />
 			</div>
 
 			<div className='mt-10'>
@@ -75,25 +73,11 @@ const Home = () => {
 };
 export default Home;
 
-
-	/* <div className='mt-10'>
-	<div className='flex gap-10'>
-		{searchResults.length > 0 ? (
-			<Card products={searchResults} title='No Search Results Found' />
-		) : (
-			<Card products={products} title='No products' />
-		)}
-	</div>
-</div> */
-
-
 // Need to add images to the product cards
 // Need to style product cards
 
 // Fix query to search both the name & the category
 
-// Need a button to add products to the cart
-// Need a handleSubmit function on the add to cart button
 // Need to add a number next to the cart
 
 // Need to associate a user with their own individual cart / local storage? cookies?

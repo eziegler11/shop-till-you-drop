@@ -8,6 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/', productRouter);
+app.use('/search', productRouter);
 
 mongoose.connect('mongodb://localhost:27017/test', {
 	useNewUrlParser: true,
