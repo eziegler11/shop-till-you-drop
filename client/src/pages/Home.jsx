@@ -3,40 +3,46 @@ import { useEffect, useState } from 'react';
 
 import SearchBar from '../components/SearchBar';
 import ProductCard from '../components/productCard';
-// import Card from '../components/Card';
 
 const Home = () => {
 	// Updates the state of the products and the products that match the search text
-	const [products, getProducts] = useState([]);
+	const [products, setProducts] = useState([]);
 	const [searchResults, setSearchResults] = useState([]);
 	const [cart, setCart] = useState({});
 
-	const url = 'http://localhost:3001/';
+	// const url = 'http://localhost:3001/';
 
 	// Displays all products on home page on render
 	useEffect(() => {
-		getAllProducts();
+		axios
+			.get('http://localhost:3001/')
+			.then((response) => {
+				setProducts(response.data);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	}, []);
 
-	// Gets all products from the database
-	const getAllProducts = async () => {
-		await axios
-			.get(`${url}products`)
-			.then((response) => {
-				getProducts(response.data);
-			})
-			.catch((error) => console.log(`Error: ${error}`));
-	};
+	// // Gets all products from the database
+	// const getAllProducts = async () => {
+	// 	await axios
+	// 		.get(`${url}products`)
+	// 		.then((response) => {
+	// 			getProducts(response.data);
+	// 		})
+	// 		.catch((error) => console.log(`Error: ${error}`));
+	// };
 
 	// Queries the database for products that match the search text
-	const handleSearch = async (searchText) => {
-		try {
-			const response = await axios.get(`${url}search/products?q=${searchText}`);
-			setSearchResults(response.data);
-		} catch (error) {
-			console.error(error);
-		}
-	};
+	// const handleSearch = async (searchText) => {
+	// 	try {
+	// 		const response = await axios.get(`${url}search/products?q=${searchText}`);
+	// 		setSearchResults(response.data);
+	// 	} catch (error) {
+	// 		console.error(error);
+	// 	}
+	// };
 
 	return (
 		<section className='max-w-7xl mx-auto'>
@@ -48,7 +54,7 @@ const Home = () => {
 			</div>
 
 			<div className='mt-16'>
-				<SearchBar onSearch={handleSearch} />
+				{/* <SearchBar onSearch={handleSearch} /> */}
 			</div>
 
 			<div className='mt-10'>
@@ -56,9 +62,9 @@ const Home = () => {
 					{searchResults.length > 0 ? (
 						<ProductCard product={searchResults} />
 					) : (
-						products.map((product, index) => (
+						products.map((products, index) => (
 							<div key={index}>
-								<ProductCard product={product} />
+								<ProductCard product={products} />
 							</div>
 						))
 					)}

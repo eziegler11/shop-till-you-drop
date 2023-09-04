@@ -1,4 +1,5 @@
-import Card from './Card';
+import productCard from './productCard';
 import SearchField from './SearchField';
+import searchBar from './searchBar';
 
-export { Card, SearchField };
+export { productCard, SearchField, searchBar };

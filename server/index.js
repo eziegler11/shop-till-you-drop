@@ -1,15 +1,25 @@
 import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
-import productRoute from './routes/productRoute.js';
+import productRouter from './routes/productRoutes.js';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/test');
+app.use('/', productRouter);
 
-app.use('/api/', productRouter);
+mongoose.connect('mongodb://localhost:27017/test', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+	console.log('Connected to MongoDB');
+});
+
 
 // // Gets all products on load and displays them on the home
 // app.get('/products', (req, res) => {
@@ -36,5 +46,3 @@ app.use('/api/', productRouter);
 app.listen(3001, () => {
 	console.log('Server is running on port 3001');
 });
-
-// uncomment code and delete files to revert
