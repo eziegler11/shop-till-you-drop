@@ -1,25 +1,36 @@
-import * as dotenv from 'dotenv';
-import express from 'express';
+// import * as dotenv from 'dotenv';
+// import express from 'express';
 import mongoose from 'mongoose';
-import ProductSchema from '../models/Product.js';
-import connectDB from '../mongodb/connect.js';
+import ProductModel from '../models/Product.js';
+// import connectDB from '../mongodb/connect.js';
 
-dotenv.config();
-const app = express();
-app.use(express.json());
+mongoose.connect('mongodb://localhost:27017/test', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+});
 
-const startServer = async () => {
-	try {
-		connectDB(process.env.MONGODB_URL);
-		app.listen(8080, () =>
-			console.log('Server is running on port http://localhost:8080')
-		);
-	} catch (error) {
-		console.log(error);
-	}
-};
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+	console.log('Connected to MongoDB');
+});
 
-startServer();
+// dotenv.config();
+// const app = express();
+// app.use(express.json());
+
+// const startServer = async () => {
+// 	try {
+// 		connectDB(process.env.MONGODB_URL);
+// 		app.listen(8080, () =>
+// 			console.log('Server is running on port http://localhost:8080')
+// 		);
+// 	} catch (error) {
+// 		console.log(error);
+// 	}
+// };
+
+// startServer();
 
 const seedProducts = [
 	{
@@ -55,8 +66,10 @@ const seedProducts = [
 ];
 
 const seedDB = async () => {
-	await ProductSchema.deleteMany({});
-	await ProductSchema.insertMany(seedProducts);
+	// await ProductModel.deleteMany({});
+	// If statement (if table exists, then delete)
+	console.log('Danger!!');
+	await ProductModel.insertMany(seedProducts);
 	console.log('DB Seeded');
 };
 

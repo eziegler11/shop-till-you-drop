@@ -7,6 +7,9 @@ const Cart = () => {
 	// const productsCount = cart.items.reduce((sum, product) => sum + product.quantity, 0);
 	const productsCount = 3;
 
+	const test = cart.getTotalCost();
+	console.log(test);
+
 	return (
 		<div>
 			<h1>Shopping Cart</h1>
@@ -18,7 +21,7 @@ const Cart = () => {
 							<h1 key={index}>{currentProduct._id}</h1>
 						))}
 
-						<h1>Total: {cart.getTotalCost().toFixed(2)}</h1>
+						{/* <h1>Total: {cart.getTotalCost()}</h1> */}
 
 						<button>Purchase Items</button>
 					</>

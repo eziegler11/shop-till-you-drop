@@ -25,4 +25,16 @@ router.get('/search', async (req, res) => {
 	}
 });
 
+router.get('/product/:id', async (req, res) => {
+	console.log(req.params.id);
+	try {
+		const search = await ProductModel.findById(req.params.id);
+		res.json(search);
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ message: 'Server error' });
+	}
+});
+
+
 export default router;
