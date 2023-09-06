@@ -1,14 +1,24 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../context/CartContext';
 
 const Cart = () => {
 	const cart = useContext(CartContext);
-	const [total, setTotal] = useState(() => {
-		let setTotal = cart.getTotalCost();
-	});
+	// const [total, setTotal] = useState(() => {
+	// 	const initialTotal = cart.getTotalCost();
+	// 	return initialTotal;
+	// });
 
-	// const productsCount = cart.items.reduce((sum, product) => sum + product.quantity, 0);
-	const productsCount = 3;
+	// useEffect(() => {
+	// 	if (total) {
+	// 		setTotal(cart.getTotalCost());
+	// 	}
+	// }, []);
+
+	// const productsCount = cart.items.quantity;
+	const productsCount = cart.items.reduce((sum, products) => sum + products.quantity, 0);
+	console.log(cart.items);
+	
+	// const productsCount = 3;
 
 	return (
 		<div>
@@ -18,10 +28,12 @@ const Cart = () => {
 					<>
 						<p>Items in your cart:</p>
 						{cart.items.map((currentProduct, index) => (
-							<h1 key={index}>{currentProduct.id}</h1>
+							<div key={index}>
+								<h1>{currentProduct._id}</h1>
+							</div>
 						))}
 
-						<h1>Total: {setTotal}</h1>
+						<h1>Total: {productsCount}</h1>
 
 						<button>Purchase Items</button>
 					</>

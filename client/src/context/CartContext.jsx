@@ -113,8 +113,11 @@ export function CartProvider({ children }) {
 		return totalCost;
 	}
 
+	// can I pass totalCost in the contextValue?
+	// and call the cart.geTotalCost on the cart page using useState or something
+
 	const contextValue = {
-		items: [cartProducts],
+		items: cartProducts,
 		getProductQuantity,
 		addOneToCart,
 		removeOneFromCart,

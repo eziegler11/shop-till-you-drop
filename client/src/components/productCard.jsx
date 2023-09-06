@@ -7,6 +7,7 @@ const productCard = (props) => {
 	const product = props.product;
 	const cart = useContext(CartContext);
 	const productQuantity = cart.getProductQuantity(product._id);
+	console.log(cart.items);
 
 	return (
 		<div>
