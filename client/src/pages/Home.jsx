@@ -21,6 +21,7 @@ const Home = () => {
 			});
 	}, []);
 
+
 	// useEffect(() => {
 	// 	axios
 	// 	.get('http://localhost:3001/search')

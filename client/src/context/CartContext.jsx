@@ -79,21 +79,37 @@ export function CartProvider({ children }) {
 		);
 	}
 
-	const getAllProducts = async () => {
-		await axios
-			.get('http://localhost:3001/products')
-			.then((response) => {
-				response.data;
-			})
-			.catch((error) => console.log(`Error: ${error}`));
+	// const getAllProducts = async () => {
+	// 	await axios
+	// 		.get('http://localhost:3001/')
+	// 		.then((response) => {
+	// 			response.data;
+	// 		})
+	// 		.catch((error) => console.log(`Error: ${error}`));
+	// };
+	
+	
+	const getOneProduct = async (itemId) => {
+		try {
+			const res = await axios.get(`http://localhost:3001/product/${itemId}`);
+			return res.data;
+		} catch (err) {
+			console.error(err);
+			throw err;
+		}
 	};
 
-	function getTotalCost() {
+	async function getTotalCost() {
 		let totalCost = 0;
-		cartProducts.map((cartItem) => {
-			const getProductData = getAllProducts(cartItem._id);
-			totalCost += getProductData.price * cartItem.quantity;
+
+		const promises = cartProducts.map(async (cartItem) => {
+			const productData = await getOneProduct(cartItem._id);
+			totalCost += productData.price * cartItem.quantity;
 		});
+
+		await Promise.all(promises);
+
+		console.log(totalCost);
 		return totalCost;
 	}
 
