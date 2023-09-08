@@ -26,3 +26,5 @@ function CartProduct(props) {
 }
 
 export default CartProduct;
+
+// Still working on props
