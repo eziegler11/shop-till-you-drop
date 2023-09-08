@@ -1,24 +1,15 @@
-import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { useContext, useState } from 'react';
+import CartProduct from '../components/cartProduct';
 import { CartContext } from '../context/CartContext';
 
 const Cart = () => {
 	const cart = useContext(CartContext);
-	// const [total, setTotal] = useState(() => {
-	// 	const initialTotal = cart.getTotalCost();
-	// 	return initialTotal;
-	// });
 
-	// useEffect(() => {
-	// 	if (total) {
-	// 		setTotal(cart.getTotalCost());
-	// 	}
-	// }, []);
-
-	// const productsCount = cart.items.quantity;
-	const productsCount = cart.items.reduce((sum, products) => sum + products.quantity, 0);
-	console.log(cart.items);
-	
-	// const productsCount = 3;
+	const productsCount = cart.items.reduce(
+		(sum, products) => sum + products.quantity,
+		0
+	);
 
 	return (
 		<div>
@@ -30,12 +21,18 @@ const Cart = () => {
 						{cart.items.map((currentProduct, index) => (
 							<div key={index}>
 								<h1>{currentProduct._id}</h1>
+								<CartProduct
+									id={currentProduct._id}
+									quantity={currentProduct.quantity}
+								></CartProduct>
 							</div>
 						))}
 
-						<h1>Total: {productsCount}</h1>
+						<h1>Total: $0.00</h1>
 
-						<button>Purchase Items</button>
+						<button className='text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'>
+							Purchase Items
+						</button>
 					</>
 				) : (
 					<h1>There are no products in your cart</h1>

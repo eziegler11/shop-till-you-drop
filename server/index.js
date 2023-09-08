@@ -9,6 +9,7 @@ app.use(express.json());
 
 app.use('/', productRouter);
 app.use('/search', productRouter);
+app.use('/products', productRouter);
 
 mongoose.connect('mongodb://localhost:27017/test', {
 	useNewUrlParser: true,
@@ -21,6 +22,9 @@ db.once('open', () => {
 	console.log('Connected to MongoDB');
 });
 
+app.listen(3001, () => {
+	console.log('Server is running on port 3001');
+});
 
 // // Gets all products on load and displays them on the home
 // app.get('/products', (req, res) => {
@@ -43,7 +47,3 @@ db.once('open', () => {
 // 		res.status(500).json({ message: 'Server error' });
 // 	}
 // });
-
-app.listen(3001, () => {
-	console.log('Server is running on port 3001');
-});

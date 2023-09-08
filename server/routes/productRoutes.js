@@ -4,15 +4,21 @@ import ProductModel from '../models/Product.js';
 const router = express.Router();
 
 // GET all Products
-router.get('/', async (req, res) => {
+router.get('/products', async (req, res) => {
 	try {
-		const products = await ProductModel.find();
+		const products = await ProductModel.find({});
 		res.json(products);
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ message: 'Server error' });
 	}
 });
+
+// router.get('/products', (req, res) => {
+// 	ProductModel.find({}).then(
+// 		products => res.json(products)
+// 	).catch((err) => console.log(err));
+// });
 
 // GET Product by User Search
 router.get('/search', async (req, res) => {

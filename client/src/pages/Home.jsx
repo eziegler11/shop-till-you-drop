@@ -6,13 +6,19 @@ import ProductCard from '../components/productCard';
 
 const Home = () => {
 	// Updates the state of the products and the products that match the search text
-	const [products, setProducts] = useState([]);
+	const [products, setProducts] = useState([
+		{
+			name: '',
+			price: '',
+			category: '',
+		},
+	]);
 	const [searchResults, setSearchResults] = useState([]);
 
 	// Displays all products on home page on render
 	useEffect(() => {
 		axios
-			.get('http://localhost:3001/')
+			.get('http://localhost:3001/products')
 			.then((response) => {
 				setProducts(response.data);
 			})
@@ -20,7 +26,6 @@ const Home = () => {
 				console.error(error);
 			});
 	}, []);
-
 
 	// useEffect(() => {
 	// 	axios
