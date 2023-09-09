@@ -20,7 +20,6 @@ const Cart = () => {
 						<p>Items in your cart:</p>
 						{cart.items.map((currentProduct, index) => (
 							<div key={index}>
-								<h1>{currentProduct._id}</h1>
 								<CartProduct
 									id={currentProduct._id}
 									quantity={currentProduct.quantity}

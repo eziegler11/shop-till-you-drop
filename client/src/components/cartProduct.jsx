@@ -3,13 +3,47 @@ import { CartContext } from "../context/CartContext";
 import { useContext, useEffect, useState } from "react";
 
 function CartProduct(props) {
-    const cart = useContext(CartContext);
-    
-    // Need to get the name and price from the productData and then associate the props.id with the _id from the productData and return the name instead of the ID and also multiply the price by the quantity
+	const cart = useContext(CartContext);
+	const [products, setProducts] = useState([]);
+	const cartItems = cart.items;
+	const cartNames = getProductNamesFromMongoDB(cartItems);
+	
+	function getProductNamesFromMongoDB (cartItems) {
+		const matchedProducts = [];
+		
+		cartItems.forEach((cartItem) => {
+			const matchedMongoProduct = products.find(
+				(mongoProduct) => mongoProduct._id === cartItem._id
+				);
+				
+				if (matchedMongoProduct) {
+					matchedProducts.push(matchedMongoProduct.name);
+				}
+			});
+			
+			return matchedProducts;
+		}
+		
+	useEffect(() => {
+		axios
+			.get('http://localhost:3001/products')
+			.then((response) => {
+				setProducts(response.data);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}, []);
 
     return (
 			<>
 				<div>
+					{cartNames.map((productName, index) => (
+						<h3 key={index}>{productName}</h3>
+					))
+					}
+					</div>
+					<div>
 					{/* <h3>{productData.name}</h3> */}
 					<p>{props.quantity} total</p>
 					{/* <p>${props.quantity * products.price}</p> */}
