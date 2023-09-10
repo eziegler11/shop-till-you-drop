@@ -4,47 +4,47 @@ import { useContext, useEffect, useState } from "react";
 
 function CartProduct(props) {
 	const cart = useContext(CartContext);
-	const [products, setProducts] = useState([]);
-	const cartItems = cart.items;
-	const cartNames = getProductNamesFromMongoDB(cartItems);
+	// const [products, setProducts] = useState([]);
+	// const cartItems = cart.items;
+	// const cartNames = getProductNamesFromMongoDB(cartItems);
 	
-	function getProductNamesFromMongoDB (cartItems) {
-		const matchedProducts = [];
+	// function getProductNamesFromMongoDB (cartItems) {
+	// 	const matchedProducts = [];
 		
-		cartItems.forEach((cartItem) => {
-			const matchedMongoProduct = products.find(
-				(mongoProduct) => mongoProduct._id === cartItem._id
-				);
+	// 	cartItems.forEach((cartItem) => {
+	// 		const matchedMongoProduct = products.find(
+	// 			(mongoProduct) => mongoProduct._id === cartItem._id
+	// 			);
 				
-				if (matchedMongoProduct) {
-					matchedProducts.push(matchedMongoProduct.name);
-				}
-			});
+	// 			if (matchedMongoProduct) {
+	// 				matchedProducts.push(matchedMongoProduct.name);
+	// 			}
+	// 		});
 			
-			return matchedProducts;
-		}
+	// 		return matchedProducts;
+	// 	}
 		
-	useEffect(() => {
-		axios
-			.get('http://localhost:3001/products')
-			.then((response) => {
-				setProducts(response.data);
-			})
-			.catch((error) => {
-				console.error(error);
-			});
-	}, []);
+	// useEffect(() => {
+	// 	axios
+	// 		.get('http://localhost:3001/products')
+	// 		.then((response) => {
+	// 			setProducts(response.data);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error(error);
+	// 		});
+	// }, []);
 
     return (
 			<>
 				<div>
-					{cartNames.map((productName, index) => (
+					{/* {cartNames.map((productName, index) => (
 						<h3 key={index}>{productName}</h3>
 					))
-					}
+					} */}
 					</div>
 					<div>
-					{/* <h3>{productData.name}</h3> */}
+					<h3>{props.product}</h3>
 					<p>{props.quantity} total</p>
 					{/* <p>${props.quantity * products.price}</p> */}
 					<button
