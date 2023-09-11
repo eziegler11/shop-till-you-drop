@@ -3,7 +3,7 @@ import { CartContext } from '../context/CartContext';
 import { formatCurrency } from '../utilities/formatCurrency';
 
 const productCard = (props) => {
-	//props.product is our product data
+	//props.product is the product data
 	const product = props.product;
 	const cart = useContext(CartContext);
 	const productQuantity = cart.getProductQuantity(product._id);

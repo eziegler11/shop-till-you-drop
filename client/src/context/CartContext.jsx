@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { createContext, useState } from 'react';
 
 // Context (cart, addToCart, removeCart)
@@ -9,7 +8,6 @@ export const CartContext = createContext({
 	addOneToCart: () => {},
 	removeOneFromCart: () => {},
 	deleteFromCart: () => {},
-	// getTotalCost: () => {},
 });
 
 export function CartProvider({ children }) {
@@ -78,35 +76,6 @@ export function CartProvider({ children }) {
 			})
 		);
 	}
-		
-	// async function getOneProduct(itemId) {
-	// 	try {
-	// 		const res = await axios.get(`http://localhost:3001/product/${itemId}`);
-	// 		return res.data;
-	// 	} catch (err) {
-	// 		console.error(err);
-	// 		throw err;
-	// 	}
-	// }
-
-	// async function getTotalCost() {
-	// 	let totalCost = 0;
-
-	// 	const promises = cartProducts.map(async (cartItem) => {
-	// 		const productData = await getOneProduct(cartItem._id);
-	// 		totalCost += productData.price * cartItem.quantity;
-	// 	});
-
-	// 	await Promise.all(promises);
-
-	// 	console.log(totalCost);
-	// 	return totalCost;
-	// }
-
-	// can I pass totalCost in the contextValue?
-	// and call the cart.geTotalCost on the cart page using useState or something
-
-	// should be a way to have the price come through, if the ID is coming through
 
 	const contextValue = {
 		items: cartProducts,
@@ -114,7 +83,6 @@ export function CartProvider({ children }) {
 		addOneToCart,
 		removeOneFromCart,
 		deleteFromCart,
-		// getTotalCost,
 	};
 
 	return (

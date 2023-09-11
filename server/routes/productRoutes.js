@@ -14,12 +14,6 @@ router.get('/products', async (req, res) => {
 	}
 });
 
-// router.get('/products', (req, res) => {
-// 	ProductModel.find({}).then(
-// 		products => res.json(products)
-// 	).catch((err) => console.log(err));
-// });
-
 // GET Product by User Search
 router.get('/search', async (req, res) => {
 	try {

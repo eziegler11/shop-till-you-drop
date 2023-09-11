@@ -1,19 +1,11 @@
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
-import { useContext } from 'react';
-import { CartContext, CartProvider } from './context/CartContext';
+import { CartProvider } from './context/CartContext';
 import { Cart, Home } from './pages';
 
 import { RiShoppingCartLine } from 'react-icons/ri';
 
 const App = () => {
-	// const cart = useContext(CartContext);
-
-	// const productsCount = cart.items.reduce(
-	// 	(sum, product) => sum + product.quantity,
-	// 	0
-	// );
-
 	return (
 		<CartProvider>
 			<BrowserRouter>

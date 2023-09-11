@@ -4,7 +4,6 @@ import { CartContext } from '../context/CartContext';
 function CartProduct(props) {
 	const cart = useContext(CartContext);
 
-
 	return (
 		<>
 			<div>
