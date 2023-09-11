@@ -1,25 +1,6 @@
-// import * as dotenv from 'dotenv';
-// import express from 'express';
 import mongoose from 'mongoose';
 import ProductSchema from '../models/Product.js';
-// import connectDB from '../mongodb/connect.js';
 
-// dotenv.config();
-// const app = express();
-// app.use(express.json());
-
-// const startServer = async () => {
-// 	try {
-// 		connectDB(process.env.MONGODB_URL);
-// 		app.listen(8080, () =>
-// 			console.log('Server is running on port http://localhost:8080')
-// 		);
-// 	} catch (error) {
-// 		console.log(error);
-// 	}
-// };
-
-// startServer();
 
 const seedProducts = [
 	{
@@ -55,7 +36,6 @@ const seedProducts = [
 ];
 
 const seedDB = async () => {
-	// await ProductSchema.deleteMany({});
 	await ProductSchema.insertMany(seedProducts);
 	console.log('DB Seeded');
 };

@@ -59,7 +59,7 @@ const Cart = () => {
 		return total;
 	}, 0);
 
-	// Formate total cost to 2 decimal places
+	// Format total cost to 2 decimal places
 	const formattedTotalCost = totalCost.toFixed(2);
 
 	return (

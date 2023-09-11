@@ -1,5 +1,4 @@
-import Home from './Home';
-import SingleItem from './SingleItem';
 import Cart from './Cart';
+import Home from './Home';
 
-export { Home, SingleItem, Cart };
+export { Cart, Home };
