@@ -42,6 +42,26 @@ const Cart = () => {
 			});
 	}, []);
 
+	// Calculate subtotal for each item
+	const calculateSubtotal = (quantity, price) => {
+		return quantity * price;
+	};
+
+	// Calculate total cost of all items in cart
+	const totalCost = cartItems.reduce((total, item) => {
+		const product = cartNames.find(product => product._id === item._id);
+
+		if (product) {
+			const subtotal = calculateSubtotal(item.quantity, product.price);
+			return total + subtotal;
+		}
+
+		return total;
+	}, 0);
+
+	// Formate total cost to 2 decimal places
+	const formattedTotalCost = totalCost.toFixed(2);
+
 	return (
 		<div>
 			<h1>Shopping Cart: {productsCount}</h1>
@@ -49,19 +69,25 @@ const Cart = () => {
 				{productsCount > 0 ? (
 					<>
 						<p>Items in your cart:</p>
-						{cartNames.map((currentProduct, index) => (
-							<div key={index}>
+						{cartNames.map(currentProduct => {
+							const shoppingItem = cartItems.find(item => item._id === currentProduct._id);
+
+							if (shoppingItem) {
+							return (
 								<CartProduct
+									key={currentProduct._id}
 									id={currentProduct._id}
-									quantity={currentProduct.quantity}
 									product={currentProduct.name}
-								></CartProduct>
-							</div>
-						))}
-
+									subtotal={calculateSubtotal(shoppingItem.quantity, currentProduct.price)}
+									quantity={shoppingItem ? shoppingItem.quantity : 0}>
+								</CartProduct>
+							)
+						}
 						
+						return null;
+					})}
 
-						<h1>Total: $0.00</h1>
+					<h3>Total Cost: {formattedTotalCost}</h3>
 
 						<button className='text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'>
 							Purchase Items
