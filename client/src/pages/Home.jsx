@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-import SearchBar from '../components/SearchBar';
 import ProductCard from '../components/productCard';
 
 const Home = () => {
@@ -13,7 +12,7 @@ const Home = () => {
 			category: '',
 		},
 	]);
-	
+
 	const [searchResults, setSearchResults] = useState([]);
 
 	// Displays all products on home page on render
@@ -29,7 +28,7 @@ const Home = () => {
 	}, []);
 
 	return (
-		<section className='max-w-7xl mx-auto'>
+		<section>
 			<div>
 				<h1 className='font-extrabold text-[#222328] text-[32px]'>Products</h1>
 				<p className='mt-2 text-[#666e75] text-[16px] max-w[500px]'>
@@ -41,14 +40,18 @@ const Home = () => {
 				<SearchBar onSearch={setSearchResults} />
 			</div> */}
 
-			<div className='mt-10'>
-				<div className='flex gap-10'>
+			<div>
+				<div className='grid grid-flow-row grid-cols-4 gap-10'>
 					{searchResults.length > 0 ? (
 						<ProductCard product={searchResults} />
 					) : (
 						products.map((products, index) => (
 							<div key={index}>
-								<ProductCard key={products._id} product={products} />
+								<ProductCard
+									className=''
+									key={products._id}
+									product={products}
+								/>
 							</div>
 						))
 					)}
