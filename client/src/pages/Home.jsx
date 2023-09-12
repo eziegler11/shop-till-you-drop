@@ -28,7 +28,7 @@ const Home = () => {
 	}, []);
 
 	return (
-		<section>
+		<section className=''>
 			<div>
 				<h1 className='font-extrabold text-[#222328] text-[32px]'>Products</h1>
 				<p className='mt-2 text-[#666e75] text-[16px] max-w[500px]'>
@@ -41,7 +41,7 @@ const Home = () => {
 			</div> */}
 
 			<div>
-				<div className='grid grid-flow-row grid-cols-4 gap-10'>
+				<div className='grid grid-flow-row grid-cols-4 gap-3'>
 					{searchResults.length > 0 ? (
 						<ProductCard product={searchResults} />
 					) : (
