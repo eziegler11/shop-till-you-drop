@@ -41,14 +41,13 @@ const Home = () => {
 			</div> */}
 
 			<div>
-				<div className='grid grid-flow-row grid-cols-4 gap-3'>
+				<div className='grid gap-3 xs:grid-cols-1 sm:grid-cols-3 md:grid-cols-4'>
 					{searchResults.length > 0 ? (
 						<ProductCard product={searchResults} />
 					) : (
 						products.map((products, index) => (
 							<div key={index}>
 								<ProductCard
-									className=''
 									key={products._id}
 									product={products}
 								/>

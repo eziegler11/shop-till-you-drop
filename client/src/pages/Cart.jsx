@@ -62,11 +62,15 @@ const Cart = () => {
 
 	return (
 		<div>
-			<h1>Shopping Cart: {productsCount}</h1>
+			<h1 className='font-extrabold text-[#222328] text-[32px] mb-7'>
+				Shopping Cart: {productsCount}
+			</h1>
 			<div>
 				{productsCount > 0 ? (
 					<>
-						<p>Items in your cart:</p>
+						<p className='font-semibold text-[#222328] text-[25px]'>
+							Items in your cart:
+						</p>
 						{cartNames.map((currentProduct) => {
 							const shoppingItem = cartItems.find(
 								(item) => item._id === currentProduct._id
@@ -90,14 +94,18 @@ const Cart = () => {
 							return null;
 						})}
 
-						<h3>Total Cost: ${formattedTotalCost}</h3>
+						<h3 className='font-semibold text-[#222328] text-[25px] mt-3'>
+							Total Cost: ${formattedTotalCost}
+						</h3>
 
-						<button className='text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'>
+						<button className='text-white bg-green-700 hover:bg-green-800 font-medium rounded-md text-sm px-3 py-1.5 transition-all my-1'>
 							Purchase Items
 						</button>
 					</>
 				) : (
-					<h1>There are no products in your cart</h1>
+					<h1 className='font-semibold text-[#222328] text-[25px]'>
+						There are no products in your cart
+					</h1>
 				)}
 			</div>
 		</div>
