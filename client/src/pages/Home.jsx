@@ -13,6 +13,7 @@ const Home = () => {
 			category: '',
 		},
 	]);
+	
 	const [searchResults, setSearchResults] = useState([]);
 
 	// Displays all products on home page on render
@@ -36,9 +37,9 @@ const Home = () => {
 				</p>
 			</div>
 
-			<div className='mt-16'>
+			{/* <div className='mt-16'>
 				<SearchBar onSearch={setSearchResults} />
-			</div>
+			</div> */}
 
 			<div className='mt-10'>
 				<div className='flex gap-10'>
@@ -47,7 +48,7 @@ const Home = () => {
 					) : (
 						products.map((products, index) => (
 							<div key={index}>
-								<ProductCard product={products} />
+								<ProductCard key={products._id} product={products} />
 							</div>
 						))
 					)}
