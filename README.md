@@ -20,15 +20,15 @@ Here is a link to the deployed app:
 
 The homepage:
 
-![Homepage](assets/image_1.png)
+![Homepage](client/src/assets/image_1.png)
 
 Adding products to your cart:
 
-![Adding products](assets/image_2.png)
+![Adding products](client/src/assets/image_2.png)
 
 The shopping cart:
 
-![Shopping cart](assets/image_3.png)
+![Shopping cart](client/src/assets/image_3.png)
 
 ## License
 
