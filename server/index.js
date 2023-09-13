@@ -12,7 +12,7 @@ app.use('/', productRouter);
 app.use('/search', productRouter);
 app.use('/products', productRouter);
 
-mongoose.connect('mongodb://localhost:27017/test', {
+mongoose.connect('mongodb://127.0.0.1/test', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });
