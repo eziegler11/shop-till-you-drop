@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import CartProduct from '../components/cartProduct';
 import { CartContext } from '../context/CartContext';
+import { formatCurrency } from '../utilities/formatCurrency';
 
 const Cart = () => {
 	const cart = useContext(CartContext);
@@ -95,7 +96,7 @@ const Cart = () => {
 						})}
 
 						<h3 className='font-semibold text-[#222328] text-[25px] mt-3'>
-							Total Cost: ${formattedTotalCost}
+							Total Cost: {formatCurrency(formattedTotalCost)}
 						</h3>
 
 						<button className='text-white bg-green-700 hover:bg-green-800 font-medium rounded-md text-sm px-3 py-1.5 transition-all my-1'>

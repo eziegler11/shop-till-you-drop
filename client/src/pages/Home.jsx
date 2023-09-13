@@ -61,9 +61,6 @@ const Home = () => {
 };
 export default Home;
 
-// Need to add images to the product cards
-// Need to style product cards
-
 // Future Development:
 
 // Fix query to search both the name & the category
