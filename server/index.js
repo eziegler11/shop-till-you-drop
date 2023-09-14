@@ -13,7 +13,7 @@ app.use('/', productRouter);
 app.use('/search', productRouter);
 app.use('/products', productRouter);
 
-const uri = process.env.MONGODB_URL;
+const uri = process.env.MONGODB_URI;
 
 const options = {
 	useNewUrlParser: true,
