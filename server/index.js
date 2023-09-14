@@ -12,7 +12,7 @@ app.use('/', productRouter);
 app.use('/search', productRouter);
 app.use('/products', productRouter);
 
-mongoose.connect('mongodb://localhost:27017/test', {
+mongoose.connect('mongodb://127.0.0.1:27017/test', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });
@@ -23,6 +23,6 @@ db.once('open', () => {
 	console.log('Connected to MongoDB');
 });
 
-app.listen(3001, () => {
-	console.log('Server is running on port 3001');
+app.listen(8080, () => {
+	console.log('Server is running on port 8080');
 });
