@@ -12,26 +12,16 @@ app.use('/', productRouter);
 app.use('/search', productRouter);
 app.use('/products', productRouter);
 
-async function connect() {
-	try {
-		await mongoose.connect(process.env.MONGODB_URL);
-		console.log('Connected to MongoDB');
-	}
-	catch (error) {
-		console.log('Error connecting to MongoDB', error);
-}
-}
+mongoose.connect('mongodb://localhost:27017/test', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+});
 
-// mongoose.connect('mongodb://localhost:27017/test', {
-// 	useNewUrlParser: true,
-// 	useUnifiedTopology: true,
-// });
-
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-// db.once('open', () => {
-// 	console.log('Connected to MongoDB');
-// });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console.error, 'MongoDB connection error:'));
+db.once('open', () => {
+	console.log('Connected to MongoDB');
+});
 
 app.listen(3001, () => {
 	console.log('Server is running on port 3001');
