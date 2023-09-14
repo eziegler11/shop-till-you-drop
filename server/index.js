@@ -1,6 +1,7 @@
+import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
-import mongoose from 'mongoose';
+import mongoose, { connect } from 'mongoose';
 import productRouter from './routes/productRoutes.js';
 
 const app = express();
@@ -12,17 +13,35 @@ app.use('/', productRouter);
 app.use('/search', productRouter);
 app.use('/products', productRouter);
 
-mongoose.connect('mongodb://localhost:27017/test', {
+const uri = process.env.MONGODB_URL;
+
+const options = {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
-});
+};
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console.error, 'MongoDB connection error:'));
-db.once('open', () => {
-	console.log('Connected to MongoDB');
-});
+// mongoose.connect('mongodb://localhost:27017/test', {
+// 	useNewUrlParser: true,
+// 	useUnifiedTopology: true,
+// });
 
-app.listen(3001, () => {
-	console.log('Server is running on port 3001');
+const connectDB = async () => {
+	await mongoose
+		.connect(uri, options)
+		.then(() => {
+			console.log('mongo connected');
+		})
+		.catch((e) => console.log(e));
+};
+
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console.error, 'MongoDB connection error:'));
+// db.once('open', () => {
+// 	console.log('Connected to MongoDB');
+// });
+
+connectDB().then(() => {
+	app.listen(3001, () => {
+		console.log('Server is running on port 3001');
+	});
 });
