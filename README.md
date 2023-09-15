@@ -16,7 +16,7 @@ The steps to install my project are as follows:
 
 ## Usage
 
-Here is a link to the deployed app:
+![Deployed App](https://ezshoptillyoudrop.website/))
 
 The homepage:
 
