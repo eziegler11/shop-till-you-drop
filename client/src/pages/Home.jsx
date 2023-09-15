@@ -18,7 +18,9 @@ const Home = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await axios.get('http://localhost:3001/products');
+				const response = await axios.get(
+					'https://shop-till-you-drop.onrender.com/products'
+				);
 				setProducts(response.data);
 			} catch (error) {
 				console.error(error);
