@@ -1,6 +1,7 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../context/CartContext';
 import { formatCurrency } from '../utilities/formatCurrency';
+import axios from 'axios';
 
 const productCard = (props) => {
 	//props.product is the product data
@@ -8,6 +9,19 @@ const productCard = (props) => {
 	const cart = useContext(CartContext);
 	const productQuantity = cart.getProductQuantity(product._id);
 	const imagePath = `/images/${product._id}.jpg`;
+	const [dataLoaded, setDataLoaded] = useState(false);
+
+	useEffect(() => {
+		axios.get('http://localhost:3001/products').then((response) => {
+			setDataLoaded(true);
+		});
+	}, []);
+
+	if (!dataLoaded) {
+		return <div>Loading...</div>;
+	}
+
+	// /images/64e7dd164a29a28eaf4b577f.jpg
 
 	return (
 		<div className='my-3'>

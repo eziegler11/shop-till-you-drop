@@ -1,7 +1,7 @@
-import 'dotenv/config';
 import cors from 'cors';
+import 'dotenv/config';
 import express from 'express';
-import mongoose, { connect } from 'mongoose';
+import mongoose from 'mongoose';
 import productRouter from './routes/productRoutes.js';
 
 const app = express();
@@ -20,11 +20,6 @@ const options = {
 	useUnifiedTopology: true,
 };
 
-// mongoose.connect('mongodb://localhost:27017/test', {
-// 	useNewUrlParser: true,
-// 	useUnifiedTopology: true,
-// });
-
 const connectDB = async () => {
 	await mongoose
 		.connect(uri, options)
@@ -33,12 +28,6 @@ const connectDB = async () => {
 		})
 		.catch((e) => console.log(e));
 };
-
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console.error, 'MongoDB connection error:'));
-// db.once('open', () => {
-// 	console.log('Connected to MongoDB');
-// });
 
 connectDB().then(() => {
 	app.listen(3001, () => {

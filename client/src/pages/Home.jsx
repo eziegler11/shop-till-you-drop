@@ -5,6 +5,7 @@ import ProductCard from '../components/productCard';
 
 const Home = () => {
 	// Updates the state of the products and the products that match the search text
+	const [searchResults, setSearchResults] = useState([]);
 	const [products, setProducts] = useState([
 		{
 			name: '',
@@ -13,18 +14,18 @@ const Home = () => {
 		},
 	]);
 
-	const [searchResults, setSearchResults] = useState([]);
-
 	// Displays all products on home page on render
 	useEffect(() => {
-		axios
-			.get('http://localhost:3001/products')
-			.then((response) => {
+		const fetchData = async () => {
+			try {
+				const response = await axios.get('http://localhost:3001/products');
 				setProducts(response.data);
-			})
-			.catch((error) => {
+			} catch (error) {
 				console.error(error);
-			});
+			}
+		};
+
+		fetchData();
 	}, []);
 
 	return (
