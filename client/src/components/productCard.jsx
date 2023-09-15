@@ -12,9 +12,11 @@ const productCard = (props) => {
 	const [dataLoaded, setDataLoaded] = useState(false);
 
 	useEffect(() => {
-		axios.get('http://localhost:3001/products').then((response) => {
-			setDataLoaded(true);
-		});
+		axios
+			.get('https://shop-till-you-drop.onrender.com/products')
+			.then((response) => {
+				setDataLoaded(true);
+			});
 	}, []);
 
 	if (!dataLoaded) {

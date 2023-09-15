@@ -32,7 +32,7 @@ const Cart = () => {
 
 	useEffect(() => {
 		axios
-			.get('http://localhost:3001/products')
+			.get('https://shop-till-you-drop.onrender.com/products')
 			.then((response) => {
 				setProducts(response.data);
 			})
